@@ -453,15 +453,18 @@
           <button type="submit" class="btn btn--primario btn--grande btn--ancho">
             Enviar solicitud <span class="btn__flecha" aria-hidden="true">→</span>
           </button>
-          <p class="formulario__aviso">Sitio de demostración: los datos no se envían ni se guardan.</p>
+          <p class="formulario__aviso">Al enviar se abrirá WhatsApp con tu solicitud lista. Tú decides si la mandas.</p>
         </form>
 
         <!-- Mensaje de éxito (oculto hasta que el formulario sea válido) -->
         <div class="exito" id="exito" hidden>
           <div class="exito__icono" aria-hidden="true">✓</div>
-          <h3 id="exitoTitulo">¡Solicitud recibida!</h3>
+          <h3 id="exitoTitulo">¡Tu solicitud está lista!</h3>
           <p id="exitoTexto"></p>
-          <p class="formulario__aviso">Demo: no se envió ningún dato.</p>
+          <a class="btn btn--whatsapp btn--grande" id="btnWhatsapp" href="https://wa.me/527735751575" target="_blank" rel="noopener">
+            Enviar por WhatsApp <span class="btn__flecha" aria-hidden="true">→</span>
+          </a>
+          <p class="formulario__aviso">Si WhatsApp no se abrió solo, toca el botón.</p>
           <button class="btn btn--contorno" id="btnOtra">Enviar otra solicitud</button>
         </div>
 
@@ -498,6 +501,7 @@
       <div>
         <h4>Contacto</h4>
         <p>hola@nomadatravel.ejemplo</p>
+        <a href="https://wa.me/527735751575" target="_blank" rel="noopener">WhatsApp: +52 773 575 1575</a>
         <p>Lunes a viernes, 9:00 a 18:00</p>
       </div>
     </div>

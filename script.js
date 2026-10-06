@@ -198,6 +198,9 @@ $('#buscador').addEventListener('submit', (e) => {
 });
 
 /* ---------- 6. Formulario de cotización ---------- */
+// Número de WhatsApp que recibe las solicitudes: código de país (52 = México) + 10 dígitos
+const WHATSAPP = '527735751575';
+
 const formulario = $('#formulario');
 const exito = $('#exito');
 
@@ -255,24 +258,43 @@ formulario.addEventListener('submit', (e) => {
     return;
   }
 
-  // Todo correcto: armamos el mensaje de éxito
+  // Todo correcto: armamos el mensaje para WhatsApp
   const datos = Object.fromEntries(new FormData(formulario));
   const [anio, mes, dia] = datos.fecha.split('-').map(Number);
   const fechaBonita = new Date(anio, mes - 1, dia).toLocaleDateString('es-MX', {
     day: 'numeric', month: 'long', year: 'numeric',
   });
   const viajeros = Number(datos.viajeros) === 1 ? '1 viajero' : `${datos.viajeros} viajeros`;
-  const destino = datos.destino === 'Otro' ? 'un destino a tu medida' : datos.destino;
+  const destino = datos.destino === 'Otro' ? 'Otro destino' : datos.destino;
   const nombre = datos.nombre.trim().split(' ')[0];
 
-  $('#exitoTitulo').textContent = `¡Gracias, ${nombre}!`;
+  const lineas = [
+    'Hola, Nómada Travel. Quiero solicitar una cotización:',
+    `• Nombre: ${datos.nombre.trim()}`,
+    `• Correo: ${datos.correo.trim()}`,
+    `• Destino: ${destino}`,
+    `• Viajeros: ${viajeros}`,
+    `• Fecha aproximada: ${fechaBonita}`,
+  ];
+  if (datos.mensaje.trim()) lineas.push(`• Mensaje: ${datos.mensaje.trim()}`);
+
+  // wa.me abre un chat con el número y el mensaje ya escrito
+  const enlace = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(lineas.join('\n'))}`;
+  $('#btnWhatsapp').href = enlace;
+
+  $('#exitoTitulo').textContent = `¡Listo, ${nombre}!`;
   $('#exitoTexto').textContent =
-    `Recibimos tu solicitud para ${destino} (${viajeros}, alrededor del ${fechaBonita}). ` +
-    `En un sitio real, un asesor te escribiría a ${datos.correo.trim()} con tu propuesta.`;
+    `Tu solicitud para ${destino} (${viajeros}, alrededor del ${fechaBonita}) se abrirá en WhatsApp. ` +
+    'Solo tienes que presionar "Enviar" en el chat.';
 
   formulario.hidden = true;
   exito.hidden = false;
   exito.scrollIntoView({ behavior: menosMovimiento ? 'auto' : 'smooth', block: 'center' });
+
+  // Intentamos abrir WhatsApp en una pestaña nueva.
+  // Si el navegador lo bloquea, queda el botón "Enviar por WhatsApp".
+  const ventana = window.open(enlace, '_blank');
+  if (ventana) ventana.opener = null;
 });
 
 function mostrarFormularioDeNuevo() {

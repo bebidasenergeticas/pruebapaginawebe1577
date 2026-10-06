@@ -21,4 +21,8 @@ Guarda tus fotos (con licencia de uso) en `img/`, por ejemplo `img/japon.jpg`, y
 
 ## Aviso
 
-Marca, textos y destinos son de ejemplo con fines educativos. El formulario no envía ni guarda datos.
+Marca, textos y destinos son de ejemplo con fines educativos. La página no guarda datos: al enviar el formulario se abre WhatsApp con la solicitud escrita, dirigida al número configurado en `script.js` (constante `WHATSAPP`), y la persona decide si la manda.
+
+## Cambiar el número de WhatsApp
+
+En `script.js`, edita `const WHATSAPP = '527735751575';` (código de país + número, sin espacios ni signo +). En `index.html` cambia también el número del footer y el del botón "Enviar por WhatsApp".
