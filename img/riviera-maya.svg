@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice">
+  <title>Ilustración: templo maya frente al mar Caribe con palmeras</title>
+  <defs>
+    <linearGradient id="cielo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bfe2df"/><stop offset="1" stop-color="#f4e9d2"/>
+    </linearGradient>
+    <linearGradient id="mar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d8b9b"/><stop offset=".45" stop-color="#2fb3b3"/><stop offset="1" stop-color="#7fd8cf"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#cielo)"/>
+  <circle cx="610" cy="220" r="80" fill="#fbefc8"/>
+  <path d="M70 200 q 30 -26 60 0 q 30 -20 50 4" stroke="#ffffff" stroke-width="10" fill="none" stroke-linecap="round" opacity=".8"/>
+  <rect y="530" width="800" height="470" fill="url(#mar)"/>
+  <path d="M-10 560 Q 60 554 130 560 T 270 560 T 410 560 T 550 560 T 690 560 T 830 560" stroke="#ffffff" stroke-opacity="0.1" stroke-width="2" fill="none"/><path d="M-10 598 Q 60 592 130 598 T 270 598 T 410 598 T 550 598 T 690 598 T 830 598" stroke="#ffffff" stroke-opacity="0.1" stroke-width="2" fill="none"/><path d="M-10 636 Q 60 630 130 636 T 270 636 T 410 636 T 550 636 T 690 636 T 830 636" stroke="#ffffff" stroke-opacity="0.3" stroke-width="2" fill="none"/><path d="M-10 674 Q 60 668 130 674 T 270 674 T 410 674 T 550 674 T 690 674 T 830 674" stroke="#ffffff" stroke-opacity="0.2" stroke-width="2" fill="none"/><path d="M-10 712 Q 60 706 130 712 T 270 712 T 410 712 T 550 712 T 690 712 T 830 712" stroke="#ffffff" stroke-opacity="0.3" stroke-width="2" fill="none"/><path d="M-10 750 Q 60 744 130 750 T 270 750 T 410 750 T 550 750 T 690 750 T 830 750" stroke="#ffffff" stroke-opacity="0.2" stroke-width="2" fill="none"/><path d="M-10 788 Q 60 782 130 788 T 270 788 T 410 788 T 550 788 T 690 788 T 830 788" stroke="#ffffff" stroke-opacity="0.2" stroke-width="2" fill="none"/><path d="M-10 826 Q 60 820 130 826 T 270 826 T 410 826 T 550 826 T 690 826 T 830 826" stroke="#ffffff" stroke-opacity="0.2" stroke-width="2" fill="none"/><path d="M-10 864 Q 60 858 130 864 T 270 864 T 410 864 T 550 864 T 690 864 T 830 864" stroke="#ffffff" stroke-opacity="0.2" stroke-width="2" fill="none"/>
+  <path d="M-10 530 L-10 1000 L300 1000 C 300 880 260 760 330 650 C 360 600 340 560 300 530 Z" fill="#cdb68c"/>
+  <path d="M-10 600 L300 600 C 290 640 270 680 250 700 L-10 700 Z" fill="#b59a6e" opacity=".55"/>
+  <g>
+    <rect x="40" y="470" width="230" height="70" fill="#d9c7a3"/>
+    <rect x="70" y="400" width="170" height="74" fill="#e4d4b2"/>
+    <rect x="60" y="390" width="190" height="14" fill="#cbb58b"/>
+    <rect x="98" y="420" width="22" height="54" fill="#5f4b38"/>
+    <rect x="144" y="420" width="22" height="54" fill="#5f4b38"/>
+    <rect x="190" y="420" width="22" height="54" fill="#5f4b38"/>
+    <rect x="110" y="368" width="90" height="24" fill="#d9c7a3"/>
+    <rect x="40" y="470" width="230" height="8" fill="#000" opacity=".1"/>
+  </g>
+  <path d="M260 1000 C 360 900 520 880 820 860 L820 1000 Z" fill="#f3e3c3"/>
+  <path d="M250 1000 C 350 905 520 885 820 864" stroke="#ffffff" stroke-width="6" fill="none" opacity=".9"/>
+  <path d="M640 1000 Q 626 742 570 570" stroke="#5a4636" stroke-width="15.400000000000002" fill="none" stroke-linecap="round"/><path d="M570 570 Q 483.6 542.9 412.3 588 Q 498.7 487.8 570 570 Z" fill="#3d8461"/><path d="M570 570 Q 511.5 494.6 502.1 545.6 Q 560.6 465.4 570 570 Z" fill="#2f6b4f"/><path d="M570 570 Q 558.7 465.1 602.9 536.1 Q 614.2 479.1 570 570 Z" fill="#3d8461"/><path d="M570 570 Q 615.9 476.6 691 571.1 Q 645 525.9 570 570 Z" fill="#2f6b4f"/><path d="M570 570 Q 656.4 534.4 725.5 643.6 Q 639.1 589 570 570 Z" fill="#3d8461"/><path d="M570 570 Q 627.7 582.6 635.4 685.3 Q 577.6 610.2 570 570 Z" fill="#2f6b4f"/><path d="M570 570 Q 574 610 524.2 689.9 Q 520.2 590.5 570 570 Z" fill="#3d8461"/><path d="M570 570 Q 521.6 603.9 441.4 665.8 Q 489.8 556.4 570 570 Z" fill="#2f6b4f"/>
+  <path d="M740 1000 Q 748 802 780 670" stroke="#5a4636" stroke-width="11.9" fill="none" stroke-linecap="round"/><path d="M780 670 Q 728 656.3 684.9 692.2 Q 736.9 613 780 670 Z" fill="#3d8461"/><path d="M780 670 Q 737.3 610.6 733.8 651 Q 776.5 590.1 780 670 Z" fill="#2f6b4f"/><path d="M780 670 Q 770.5 591.8 803.9 647.2 Q 813.4 602.6 780 670 Z" fill="#3d8461"/><path d="M780 670 Q 823.5 593.3 889.4 665.4 Q 845.9 631.4 780 670 Z" fill="#2f6b4f"/><path d="M780 670 Q 845.3 641.4 897.8 725.6 Q 832.4 683.6 780 670 Z" fill="#3d8461"/><path d="M780 670 Q 827.9 683.2 837.6 763.7 Q 789.7 705.3 780 670 Z" fill="#2f6b4f"/><path d="M780 670 Q 785.2 697.7 748.6 759.3 Q 743.4 683.4 780 670 Z" fill="#3d8461"/><path d="M780 670 Q 746.6 692.9 688.9 739.9 Q 722.3 656 780 670 Z" fill="#2f6b4f"/>
+</svg>

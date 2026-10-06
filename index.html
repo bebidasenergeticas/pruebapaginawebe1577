@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Nómada Travel</title>
+  <meta name="description" content="Nómada Travel: viajes a medida a Japón, Italia y la Riviera Maya. Solicita tu cotización.">
+
+  <!-- Tipografías: Instrument Serif (títulos editoriales) + Figtree (textos y botones) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700;800&display=swap">
+
+  <!-- Marca que JavaScript está activo (permite mostrar la cortina de entrada) -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <!-- Nuestros estilos -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Ícono de la pestaña (una brújula sencilla dibujada en SVG) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%231c1b1f'/%3E%3Cpath d='M16 5l4 11-4 11-4-11z' fill='%23f2c46d'/%3E%3C/svg%3E">
+</head>
+
+<body>
+
+  <!-- =========================================================
+       0. CORTINA DE ENTRADA (se ve solo un instante al cargar)
+       ========================================================= -->
+  <div class="intro" aria-hidden="true">
+    <p class="intro__logo"><span>N</span><span>ó</span><span>m</span><span>a</span><span>d</span><span>a</span></p>
+  </div>
+
+  <!-- =========================================================
+       1. MENÚ SUPERIOR
+       ========================================================= -->
+  <header class="nav" id="nav">
+    <a href="#inicio" class="nav__logo" aria-label="Nómada Travel, ir al inicio">
+      Nómada <small>Travel</small>
+    </a>
+
+    <nav class="nav__links" id="menu" aria-label="Menú principal">
+      <a href="#destinos">Destinos</a>
+      <a href="#por-que">Por qué nosotros</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#cotizar" class="btn btn--primario btn--chico">Cotizar viaje</a>
+    </nav>
+
+    <button class="nav__hamburguesa" id="btnMenu" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+
+    <!-- =========================================================
+         2. HERO (pantalla completa con paisaje animado)
+         ========================================================= -->
+    <section class="hero" id="inicio">
+
+      <!-- El paisaje está dibujado con SVG en capas: cada capa se mueve
+           a distinta velocidad (eso crea el efecto parallax). -->
+      <svg class="hero__escena" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="cieloHero" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#141318"/>
+            <stop offset=".42" stop-color="#3a2a36"/>
+            <stop offset=".72" stop-color="#94604f"/>
+            <stop offset="1" stop-color="#f0b27a"/>
+          </linearGradient>
+          <radialGradient id="brillo">
+            <stop offset="0" stop-color="#ffd9a0" stop-opacity=".75"/>
+            <stop offset="1" stop-color="#ffd9a0" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="nieblaHero" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#f0b27a" stop-opacity="0"/>
+            <stop offset=".5" stop-color="#f0b27a" stop-opacity=".28"/>
+            <stop offset="1" stop-color="#f0b27a" stop-opacity="0"/>
+          </linearGradient>
+          <!-- Máscara para "dibujar" la ruta punteada del avión -->
+          <mask id="mascaraRuta">
+            <path id="rutaDibujo" d="M140 720 C 420 300 1000 170 1480 330" stroke="#fff" stroke-width="8" fill="none"/>
+          </mask>
+        </defs>
+
+        <rect width="1600" height="900" fill="url(#cieloHero)"/>
+
+        <g class="capa" data-velocidad="0.5" id="estrellas">
+          <circle cx="90" cy="70" r="1.6" fill="#fff"/><circle cx="220" cy="160" r="1.1" fill="#fff"/>
+          <circle cx="340" cy="60" r="1.4" fill="#fff"/><circle cx="470" cy="190" r="1" fill="#fff"/>
+          <circle cx="560" cy="90" r="1.8" fill="#fff"/><circle cx="700" cy="40" r="1.2" fill="#fff"/>
+          <circle cx="820" cy="150" r="1.5" fill="#fff"/><circle cx="930" cy="70" r="1" fill="#fff"/>
+          <circle cx="1040" cy="200" r="1.3" fill="#fff"/><circle cx="1150" cy="50" r="1.7" fill="#fff"/>
+          <circle cx="1260" cy="130" r="1.1" fill="#fff"/><circle cx="1380" cy="80" r="1.5" fill="#fff"/>
+          <circle cx="1500" cy="170" r="1.2" fill="#fff"/><circle cx="1560" cy="40" r="1.4" fill="#fff"/>
+          <circle cx="160" cy="260" r="1" fill="#fff"/><circle cx="640" cy="250" r="1.1" fill="#fff"/>
+          <circle cx="1210" cy="260" r="1" fill="#fff"/><circle cx="1450" cy="290" r="1.2" fill="#fff"/>
+        </g>
+
+        <g class="capa" data-velocidad="0.42">
+          <g id="sol">
+            <circle cx="800" cy="610" r="330" fill="url(#brillo)"/>
+            <circle cx="800" cy="610" r="120" fill="#f6d7a7"/>
+          </g>
+        </g>
+
+        <path class="capa montana" data-velocidad="0.34" fill="#86605c" opacity=".9"
+              d="M0 650 L120 570 L230 610 L380 480 L520 570 L640 510 L760 590 L900 460 L1040 570 L1180 500 L1320 580 L1460 490 L1600 570 V900 H0 Z"/>
+        <rect class="capa" data-velocidad="0.3" y="560" width="1600" height="260" fill="url(#nieblaHero)"/>
+        <path class="capa montana" data-velocidad="0.24" fill="#563f45"
+              d="M0 710 L160 610 L300 690 L460 600 L600 700 L760 630 L900 710 L1060 610 L1220 700 L1380 630 L1600 710 V900 H0 Z"/>
+        <path class="capa montana" data-velocidad="0.14" fill="#2e2529"
+              d="M0 790 C 200 700 320 720 480 765 S 760 700 900 750 S 1200 820 1360 745 S 1560 720 1600 740 V900 H0 Z"/>
+        <path class="capa montana" data-velocidad="0.06" fill="#151317"
+              d="M0 860 C 240 805 420 865 640 835 S 1040 795 1240 845 S 1520 825 1600 835 V900 H0 Z"/>
+
+        <!-- Ruta del avión: línea punteada que se "dibuja" + avión que la recorre -->
+        <g class="hero__ruta">
+          <path id="rutaVuelo" d="M140 720 C 420 300 1000 170 1480 330" stroke="#f2c46d" stroke-width="2.5"
+                stroke-dasharray="2 12" stroke-linecap="round" fill="none" mask="url(#mascaraRuta)"/>
+          <g id="avion" opacity="0">
+            <g transform="scale(1.6)">
+              <path d="M16 0 L-10 -3 L-14 0 L-10 3 Z M2 0 L-6 -14 L-2 -14 L8 0 L-2 14 L-6 14 Z M-10 0 L-15 -6 L-13 -6 L-7 0 L-13 6 L-15 6 Z" fill="#f5f1ea"/>
+            </g>
+            <animateMotion id="vuelo" dur="3.2s" begin="indefinite" fill="freeze" rotate="auto"
+                           keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".45 0 .25 1">
+              <mpath href="#rutaVuelo"/>
+            </animateMotion>
+          </g>
+        </g>
+      </svg>
+
+      <!-- Textos del hero -->
+      <div class="hero__contenido">
+        <p class="hero__etiqueta">Agencia de viajes a medida</p>
+        <h1 class="hero__titulo">
+          <span class="linea"><span class="palabra">Tu</span> <span class="palabra">próximo</span> <span class="palabra">viaje</span></span>
+          <span class="linea"><em class="palabra">empieza</em> <em class="palabra">aquí</em></span>
+        </h1>
+        <p class="hero__texto">Diseñamos itinerarios a tu ritmo para Japón, Italia y la Riviera Maya. Tú eliges el destino; nosotros nos ocupamos de los detalles.</p>
+        <div class="hero__botones">
+          <a href="#destinos" class="btn btn--primario btn--grande">Explorar destinos <span class="btn__flecha" aria-hidden="true">→</span></a>
+          <a href="#cotizar" class="btn btn--vidrio btn--grande">Solicitar cotización</a>
+        </div>
+      </div>
+
+      <!-- Buscador rápido (prellena el formulario de cotización) -->
+      <form class="buscador" id="buscador" aria-label="Cotización rápida">
+        <div class="buscador__campo">
+          <label for="bDestino">¿A dónde?</label>
+          <select id="bDestino" name="destino">
+            <option value="Japón">Japón</option>
+            <option value="Italia">Italia</option>
+            <option value="Riviera Maya">Riviera Maya</option>
+            <option value="Otro">Otro destino</option>
+          </select>
+        </div>
+        <div class="buscador__campo">
+          <label for="bFecha">¿Cuándo?</label>
+          <input type="date" id="bFecha" name="fecha">
+        </div>
+        <div class="buscador__campo">
+          <label for="bViajeros">Viajeros</label>
+          <input type="number" id="bViajeros" name="viajeros" min="1" max="20" value="2" inputmode="numeric">
+        </div>
+        <button type="submit" class="btn btn--primario buscador__boton">Cotizar <span class="btn__flecha" aria-hidden="true">→</span></button>
+      </form>
+
+      <a href="#destinos" class="hero__scroll" aria-label="Bajar a destinos"><span></span></a>
+    </section>
+
+    <!-- =========================================================
+         3. BANNER DESTACADO (estilo "oferta" pero sin promesas falsas)
+         ========================================================= -->
+    <section class="contenedor">
+      <div class="banner" data-revelar>
+        <div class="banner__icono" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" stroke-width="2.5"/><path class="banner__aguja" d="M24 9 L29 24 L24 39 L19 24 Z" fill="currentColor"/><circle cx="24" cy="24" r="2.5" fill="#1c1b1f"/></svg>
+        </div>
+        <div class="banner__texto">
+          <h2>Tu viaje, diseñado a tu medida</h2>
+          <p>Cuéntanos qué imaginas y te enviamos una propuesta de itinerario personalizada, sin compromiso.</p>
+        </div>
+        <a href="#cotizar" class="btn btn--primario">Cotizar ahora</a>
+      </div>
+    </section>
+
+    <!-- Cinta animada de lugares -->
+    <div class="cinta" aria-hidden="true">
+      <div class="cinta__pista">
+        <span>Tokio</span><span>✦</span><span>Kioto</span><span>✦</span><span>Monte Fuji</span><span>✦</span><span>Roma</span><span>✦</span><span>Florencia</span><span>✦</span><span>Costa Amalfitana</span><span>✦</span><span>Tulum</span><span>✦</span><span>Cenotes</span><span>✦</span><span>Cozumel</span><span>✦</span>
+        <span>Tokio</span><span>✦</span><span>Kioto</span><span>✦</span><span>Monte Fuji</span><span>✦</span><span>Roma</span><span>✦</span><span>Florencia</span><span>✦</span><span>Costa Amalfitana</span><span>✦</span><span>Tulum</span><span>✦</span><span>Cenotes</span><span>✦</span><span>Cozumel</span><span>✦</span>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         4. DESTINOS DESTACADOS
+         ========================================================= -->
+    <section class="contenedor seccion" id="destinos">
+      <div class="seccion__encabezado" data-revelar>
+        <div>
+          <h2 class="titulo-seccion">Destinos <em>destacados</em></h2>
+          <p class="subtitulo">Tres viajes para empezar a soñar. Las duraciones son sugeridas y se ajustan a tu ritmo.</p>
+        </div>
+        <a href="#cotizar" class="btn btn--contorno">Quiero otro destino</a>
+      </div>
+
+      <div class="tarjetas">
+
+        <!-- Tarjeta: JAPÓN -->
+        <article class="tarjeta" data-revelar>
+          <div class="galeria" data-galeria>
+            <div class="galeria__pista">
+              <div class="galeria__foto"><img src="img/japon.svg" alt="Monte Fuji con pagoda y cerezos en flor" style="--zoom:1; --foco:50% 50%"></div>
+              <div class="galeria__foto"><img src="img/japon.svg" alt="Detalle del monte Fuji al atardecer" style="--zoom:1.7; --foco:55% 28%"></div>
+              <div class="galeria__foto"><img src="img/japon.svg" alt="Detalle de la pagoda" style="--zoom:1.9; --foco:78% 88%"></div>
+            </div>
+            <span class="insignia">Cultura y tradición</span>
+            <button class="favorito" aria-pressed="false" aria-label="Guardar Japón en favoritos">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.6 2.3 4.5 6.2 4.5c2.3 0 3.9 1.3 5.8 3.5 1.9-2.2 3.5-3.5 5.8-3.5 3.9 0 5.8 4.1 4.2 7.2C19.5 16.4 12 21 12 21z"/></svg>
+            </button>
+            <button class="galeria__flecha galeria__flecha--izq" aria-label="Imagen anterior">‹</button>
+            <button class="galeria__flecha galeria__flecha--der" aria-label="Imagen siguiente">›</button>
+            <div class="galeria__puntos" aria-hidden="true"><i></i><i></i><i></i></div>
+          </div>
+
+          <div class="tarjeta__cuerpo">
+            <h3 class="tarjeta__nombre">Japón</h3>
+            <p class="tarjeta__lugar">Tokio · Kioto · Monte Fuji</p>
+            <p class="tarjeta__duracion"><span class="chip-duracion">12–14 días</span> <strong>Duración sugerida</strong></p>
+            <p class="tarjeta__texto">Templos milenarios, trenes bala y la calma de un ryokan con vista al Fuji.</p>
+            <span class="etiqueta-temporada">Mejor época: primavera y otoño</span>
+            <div class="tarjeta__pie">
+              <div>
+                <p class="tarjeta__precio">Cotización personalizada</p>
+                <p class="tarjeta__nota">✓ Sin compromiso</p>
+              </div>
+              <button class="btn btn--oscuro" data-experiencia="japon">Ver experiencia</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tarjeta: ITALIA -->
+        <article class="tarjeta" data-revelar>
+          <div class="galeria" data-galeria>
+            <div class="galeria__pista">
+              <div class="galeria__foto"><img src="img/italia.svg" alt="Pueblo costero italiano con casas de colores" style="--zoom:1; --foco:50% 50%"></div>
+              <div class="galeria__foto"><img src="img/italia.svg" alt="Detalle de las casas y la cúpula" style="--zoom:1.7; --foco:80% 40%"></div>
+              <div class="galeria__foto"><img src="img/italia.svg" alt="Velero en el mar al atardecer" style="--zoom:1.9; --foco:22% 78%"></div>
+            </div>
+            <span class="insignia">Arte y gastronomía</span>
+            <button class="favorito" aria-pressed="false" aria-label="Guardar Italia en favoritos">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.6 2.3 4.5 6.2 4.5c2.3 0 3.9 1.3 5.8 3.5 1.9-2.2 3.5-3.5 5.8-3.5 3.9 0 5.8 4.1 4.2 7.2C19.5 16.4 12 21 12 21z"/></svg>
+            </button>
+            <button class="galeria__flecha galeria__flecha--izq" aria-label="Imagen anterior">‹</button>
+            <button class="galeria__flecha galeria__flecha--der" aria-label="Imagen siguiente">›</button>
+            <div class="galeria__puntos" aria-hidden="true"><i></i><i></i><i></i></div>
+          </div>
+
+          <div class="tarjeta__cuerpo">
+            <h3 class="tarjeta__nombre">Italia</h3>
+            <p class="tarjeta__lugar">Roma · Florencia · Costa Amalfitana</p>
+            <p class="tarjeta__duracion"><span class="chip-duracion">10–12 días</span> <strong>Duración sugerida</strong></p>
+            <p class="tarjeta__texto">Del Coliseo a los viñedos de la Toscana, con atardeceres frente al Mediterráneo.</p>
+            <span class="etiqueta-temporada">Mejor época: primavera y septiembre</span>
+            <div class="tarjeta__pie">
+              <div>
+                <p class="tarjeta__precio">Cotización personalizada</p>
+                <p class="tarjeta__nota">✓ Sin compromiso</p>
+              </div>
+              <button class="btn btn--oscuro" data-experiencia="italia">Ver experiencia</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tarjeta: RIVIERA MAYA -->
+        <article class="tarjeta" data-revelar>
+          <div class="galeria" data-galeria>
+            <div class="galeria__pista">
+              <div class="galeria__foto"><img src="img/riviera-maya.svg" alt="Templo maya frente al mar Caribe" style="--zoom:1; --foco:50% 50%"></div>
+              <div class="galeria__foto"><img src="img/riviera-maya.svg" alt="Detalle del templo sobre el acantilado" style="--zoom:1.8; --foco:18% 42%"></div>
+              <div class="galeria__foto"><img src="img/riviera-maya.svg" alt="Palmeras y playa de arena blanca" style="--zoom:1.7; --foco:88% 80%"></div>
+            </div>
+            <span class="insignia">Playa y naturaleza</span>
+            <button class="favorito" aria-pressed="false" aria-label="Guardar Riviera Maya en favoritos">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.6 2.3 4.5 6.2 4.5c2.3 0 3.9 1.3 5.8 3.5 1.9-2.2 3.5-3.5 5.8-3.5 3.9 0 5.8 4.1 4.2 7.2C19.5 16.4 12 21 12 21z"/></svg>
+            </button>
+            <button class="galeria__flecha galeria__flecha--izq" aria-label="Imagen anterior">‹</button>
+            <button class="galeria__flecha galeria__flecha--der" aria-label="Imagen siguiente">›</button>
+            <div class="galeria__puntos" aria-hidden="true"><i></i><i></i><i></i></div>
+          </div>
+
+          <div class="tarjeta__cuerpo">
+            <h3 class="tarjeta__nombre">Riviera Maya</h3>
+            <p class="tarjeta__lugar">Tulum · Cenotes · Cozumel</p>
+            <p class="tarjeta__duracion"><span class="chip-duracion">6–8 días</span> <strong>Duración sugerida</strong></p>
+            <p class="tarjeta__texto">Mar turquesa, ruinas mayas frente a la playa y nado en cenotes de agua cristalina.</p>
+            <span class="etiqueta-temporada">Mejor época: diciembre a abril</span>
+            <div class="tarjeta__pie">
+              <div>
+                <p class="tarjeta__precio">Cotización personalizada</p>
+                <p class="tarjeta__nota">✓ Sin compromiso</p>
+              </div>
+              <button class="btn btn--oscuro" data-experiencia="riviera">Ver experiencia</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5. FRASE GRANDE (las palabras se iluminan al hacer scroll)
+         ========================================================= -->
+    <section class="frase">
+      <p class="frase__texto" id="frase">Viajar bien no es ir más lejos. Es llegar a cada lugar con tiempo para mirarlo, probarlo y recordarlo.</p>
+    </section>
+
+    <!-- =========================================================
+         6. ¿POR QUÉ VIAJAR CON NOSOTROS?
+         ========================================================= -->
+    <section class="contenedor seccion" id="por-que">
+      <div class="seccion__encabezado" data-revelar>
+        <div>
+          <h2 class="titulo-seccion">¿Por qué viajar <em>con nosotros?</em></h2>
+          <p class="subtitulo">Lo que obtienes cuando planificas tu viaje con Nómada Travel.</p>
+        </div>
+      </div>
+
+      <div class="beneficios">
+        <article class="beneficio" data-revelar>
+          <div class="beneficio__icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z M9 3v15 M15 6v15"/></svg>
+          </div>
+          <h3>Itinerarios a tu medida</h3>
+          <p>Cada ruta se arma según tus intereses, tu ritmo y tu presupuesto. Nada de paquetes idénticos.</p>
+        </article>
+        <article class="beneficio" data-revelar>
+          <div class="beneficio__icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+          </div>
+          <h3>Un asesor para ti</h3>
+          <p>Una sola persona acompaña tu planificación de principio a fin y resuelve tus dudas.</p>
+        </article>
+        <article class="beneficio" data-revelar>
+          <div class="beneficio__icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+          </div>
+          <h3>Precios claros</h3>
+          <p>Tu cotización detalla qué incluye y qué no. Sin cargos escondidos al final.</p>
+        </article>
+        <article class="beneficio" data-revelar>
+          <div class="beneficio__icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0116 0v5a2 2 0 01-2 2h-2v-6h4 M4 13h4v6H6a2 2 0 01-2-2z"/></svg>
+          </div>
+          <h3>Acompañamiento en ruta</h3>
+          <p>Si algo cambia durante el viaje, tienes un canal directo para ayudarte a resolverlo.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         7. CÓMO FUNCIONA (en lugar de testimonios inventados)
+         ========================================================= -->
+    <section class="contenedor seccion" id="como-funciona">
+      <div class="seccion__encabezado" data-revelar>
+        <div>
+          <h2 class="titulo-seccion">Cómo <em>funciona</em></h2>
+          <p class="subtitulo">Preferimos mostrarte exactamente cómo trabajamos. Son tres pasos.</p>
+        </div>
+      </div>
+
+      <ol class="pasos">
+        <li class="paso" data-revelar>
+          <span class="paso__numero">1</span>
+          <h3>Cuéntanos tu idea</h3>
+          <p>Llena el formulario con el destino, las fechas aproximadas y cuántas personas viajan.</p>
+        </li>
+        <li class="paso" data-revelar>
+          <span class="paso__numero">2</span>
+          <h3>Recibe tu propuesta</h3>
+          <p>Te enviamos un itinerario día por día con opciones de hospedaje y actividades.</p>
+        </li>
+        <li class="paso" data-revelar>
+          <span class="paso__numero">3</span>
+          <h3>Ajusta y viaja</h3>
+          <p>Hacemos los cambios que necesites hasta que el plan sea exactamente el que quieres.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- =========================================================
+         8. FORMULARIO DE COTIZACIÓN
+         ========================================================= -->
+    <section class="contenedor seccion" id="cotizar">
+      <div class="cotizar">
+
+        <div class="cotizar__info" data-revelar>
+          <img class="cotizar__imagen" src="img/italia.svg" alt="" data-parallax="0.08">
+          <div class="cotizar__info-texto">
+            <h2 class="titulo-seccion">Solicita tu <em>cotización</em></h2>
+            <p>Completa tus datos y recibe una propuesta personalizada para tu próximo viaje.</p>
+            <ul class="lista-check">
+              <li>Respuesta con itinerario sugerido</li>
+              <li>Sin costo y sin compromiso</li>
+              <li>Ajustes ilimitados antes de reservar</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- "novalidate" desactiva los mensajes del navegador para usar los nuestros -->
+        <form class="formulario" id="formulario" novalidate data-revelar>
+          <div class="campo">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" autocomplete="name" placeholder="Ej. Ana López" required>
+            <p class="campo__error" aria-live="polite"></p>
+          </div>
+
+          <div class="campo">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="correo" autocomplete="email" placeholder="tucorreo@ejemplo.com" required>
+            <p class="campo__error" aria-live="polite"></p>
+          </div>
+
+          <div class="campo">
+            <label for="destino">Destino</label>
+            <select id="destino" name="destino" required>
+              <option value="">Elige un destino</option>
+              <option value="Japón">Japón</option>
+              <option value="Italia">Italia</option>
+              <option value="Riviera Maya">Riviera Maya</option>
+              <option value="Otro">Otro destino</option>
+            </select>
+            <p class="campo__error" aria-live="polite"></p>
+          </div>
+
+          <div class="campo campo--mitad">
+            <label for="viajeros">Número de viajeros</label>
+            <input type="number" id="viajeros" name="viajeros" min="1" max="20" value="2" inputmode="numeric" required>
+            <p class="campo__error" aria-live="polite"></p>
+          </div>
+
+          <div class="campo campo--mitad">
+            <label for="fecha">Fecha aproximada</label>
+            <input type="date" id="fecha" name="fecha" required>
+            <p class="campo__error" aria-live="polite"></p>
+          </div>
+
+          <div class="campo">
+            <label for="mensaje">Mensaje <span class="opcional">(opcional)</span></label>
+            <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos qué te gustaría vivir en este viaje"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primario btn--grande btn--ancho">
+            Enviar solicitud <span class="btn__flecha" aria-hidden="true">→</span>
+          </button>
+          <p class="formulario__aviso">Sitio de demostración: los datos no se envían ni se guardan.</p>
+        </form>
+
+        <!-- Mensaje de éxito (oculto hasta que el formulario sea válido) -->
+        <div class="exito" id="exito" hidden>
+          <div class="exito__icono" aria-hidden="true">✓</div>
+          <h3 id="exitoTitulo">¡Solicitud recibida!</h3>
+          <p id="exitoTexto"></p>
+          <p class="formulario__aviso">Demo: no se envió ningún dato.</p>
+          <button class="btn btn--contorno" id="btnOtra">Enviar otra solicitud</button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       9. FOOTER
+       ========================================================= -->
+  <footer class="footer">
+    <div class="footer__arriba">
+      <div>
+        <p class="footer__marca">Nómada <em>Travel</em></p>
+        <p class="footer__lema">Viajes a medida, contados con calma.</p>
+      </div>
+      <a href="#inicio" class="btn btn--vidrio">Volver arriba ↑</a>
+    </div>
+
+    <div class="footer__columnas">
+      <div>
+        <h4>Destinos</h4>
+        <a href="#destinos">Japón</a>
+        <a href="#destinos">Italia</a>
+        <a href="#destinos">Riviera Maya</a>
+      </div>
+      <div>
+        <h4>Agencia</h4>
+        <a href="#por-que">Por qué nosotros</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#cotizar">Cotizar viaje</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <p>hola@nomadatravel.ejemplo</p>
+        <p>Lunes a viernes, 9:00 a 18:00</p>
+      </div>
+    </div>
+
+    <p class="footer__legal">© <span id="anio">2026</span> Nómada Travel. Marca ficticia creada con fines educativos. Ilustraciones originales; los destinos y duraciones son sugerencias de ejemplo.</p>
+  </footer>
+
+  <!-- =========================================================
+       10. VENTANA "VER EXPERIENCIA" (se llena desde script.js)
+       ========================================================= -->
+  <dialog class="modal" id="modal" aria-labelledby="modalTitulo">
+    <button class="modal__cerrar" id="modalCerrar" aria-label="Cerrar">×</button>
+    <img class="modal__imagen" id="modalImagen" src="" alt="">
+    <div class="modal__cuerpo">
+      <p class="modal__lugar" id="modalLugar"></p>
+      <h3 class="modal__titulo" id="modalTitulo"></h3>
+      <p class="modal__texto" id="modalTexto"></p>
+      <h4>Momentos del viaje</h4>
+      <ul class="lista-check" id="modalLista"></ul>
+      <p class="modal__dato" id="modalDato"></p>
+      <button class="btn btn--primario btn--ancho" id="modalCotizar">Cotizar este viaje <span class="btn__flecha" aria-hidden="true">→</span></button>
+    </div>
+  </dialog>
+
+  <!-- GSAP (librería de animación) + ScrollTrigger (animar al hacer scroll) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Nuestro código -->
+  <script src="script.js"></script>
+</body>
+</html>
